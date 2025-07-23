@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2d3748;
+            --secondary: #4a5568;
+            --accent: #4299e1;
+            --light: #f7fafc;
+            --white: #ffffff;
+            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            color: var(--primary);
+            background-image: url('pexels-codioful-7135019.jpg');
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+            font-style: italic;
+        }
+
+        /* Butterfly Animation Styles */
+        .butterfly-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 999;
+            overflow: hidden;
+        }
+
+        .butterfly {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            opacity: 0.8;
+            animation: fly 15s infinite linear;
+        }
+
+        .butterfly.large {
+            width: 80px;
+            height: 80px;
+        }
+
+        .butterfly.small {
+            width: 40px;
+            height: 40px;
+        }
+
+        .butterfly svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+
+        @keyframes fly {
+            0% {
+                transform: translateX(-100px) translateY(50vh) rotate(0deg);
+            }
+            25% {
+                transform: translateX(25vw) translateY(20vh) rotate(90deg);
+            }
+            50% {
+                transform: translateX(50vw) translateY(70vh) rotate(180deg);
+            }
+            75% {
+                transform: translateX(75vw) translateY(30vh) rotate(270deg);
+            }
+            100% {
+                transform: translateX(calc(100vw + 100px)) translateY(50vh) rotate(360deg);
+            }
+        }
+
+        @keyframes flutter {
+            0%, 100% { transform: scaleX(1); }
+            50% { transform: scaleX(0.8); }
+        }
+
+        .butterfly svg {
+            animation: flutter 0.5s infinite alternate ease-in-out;
+        }
+
+        /* Different flight paths */
+        .butterfly:nth-child(2) {
+            animation-delay: -3s;
+            animation-duration: 18s;
+        }
+
+        .butterfly:nth-child(3) {
+            animation-delay: -6s;
+            animation-duration: 20s;
+        }
+
+        .butterfly:nth-child(4) {
+            animation-delay: -9s;
+            animation-duration: 16s;
+        }
+
+        .butterfly:nth-child(5) {
+            animation-delay: -12s;
+            animation-duration: 22s;
+        }
+
+        .butterfly:nth-child(6) {
+            animation-delay: -15s;
+            animation-duration: 14s;
+        }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+
+        p {
+            color: var(--secondary);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+     
+        .navbar {
+       max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--primary);
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            color: var(--accent);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--accent);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            display: none;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            padding: 10rem 2rem 5rem;
+            display: flex;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            gap: 3rem;
+        }
+
+        .hero-content {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+            max-width: 400px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            border-radius: 1rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transition: var(--transition);
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--accent);
+            border-radius: 1rem;
+            top: 20px;
+            left: 20px;
+            z-index: -1;
+            transition: var(--transition);
+        }
+
+        .hero-image:hover::before {
+            top: 15px;
+            left: 15px;
+        }
+
+        .hero-image:hover img {
+            transform: translate(-5px, -5px);
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero h2 {
+            font-size: 1.25rem;
+            color: var(--secondary);
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero p {
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            margin-right: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #3182ce;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .btn-outline {
+            border: 1px solid var(--accent);
+            color: var(--accent);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(66, 153, 225, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            color: var(--white);
+            background-color: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Projects Section */
+        .section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            margin-bottom: 3rem;
+            text-align: center;
+        }
+
+        .section-title h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .section-title p {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background-color: var(--white);
+            border-radius: 0.5rem;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .project-image {
+            height: 220px;
+            overflow: hidden;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
+        }
+
+        .project-content {
+            padding: 1.5rem;
+        }
+
+        .project-content h3 {
+            margin-bottom: 0.75rem;
+        }
+
+        .project-content p {
+            margin-bottom: 1.25rem;
+            font-size: 0.95rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background-color: rgba(66, 153, 225, 0.1);
+            color: var(--accent);
+            padding: 0.35rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+
+        .project-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .project-actions a {
+            font-weight: 500;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .project-actions a i {
+            font-size: 0.8rem;
+        }
+
+        .project-actions .live-link {
+            color: var(--accent);
+        }
+
+        .project-actions .code-link {
+            color: var(--secondary);
+        }
+
+        /* Skills Section */
+        .skills-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem; /* optional: spacing between categories */
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+
+        .skill-category {
+            background-color: var(--white);
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .skill-category h3 {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            color: var(--primary);
+        }
+
+        .skill-list {
+            list-style: none;
+        }
+
+        .skill-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .skill-icon {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-column h3 {
+            font-size: 1.25rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background-color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #cbd5e0;
+            transition: var(--transition);
+            display: inline-block;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+            transform: translateX(3px);
+        }
+
+        .contact-info p {
+            color: #cbd5e0;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-bottom {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: #cbd5e0;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu {
+                display: block;
+            }
+
+            .hero {
+                flex-direction: column-reverse;
+                text-align: center;
+                padding-top: 8rem;
+            }
+
+            .hero-content {
+                padding-right: 0;
+            }
+
+            .hero-image {
+                margin-bottom: 2rem;
+                max-width: 300px;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero-btns {
+                justify-content: center;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+
+            /* Reduce butterfly size on mobile */
+            .butterfly {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .butterfly.large {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .butterfly.small {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+/*chatbot*/
+        .chatbot-icon-wrapper {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+  z-index: 1000;
+}
+
+.chatbot-icon {
+  width: 100px;
+  height: 100px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.chatbot-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.chatbot-container {
+  position: fixed;
+  bottom: 100px;
+  right: 30px;
+  width: 350px;
+  height: 450px;
+  background-color: whitesmoke;
+  border-radius: 12px;
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  z-index: 1000;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+}
+
+.chatbot-container.active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0);
+}
+
+.chatbot-header {
+  background-color: #2c3e50;
+  color: white;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.chatbot-title {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.chatbot-close {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 1.2rem;
+}
+
+.chatbot-messages {
+  flex: 1;
+  padding: 1rem;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.message {
+  max-width: 80%;
+  padding: 0.8rem 1rem;
+  border-radius: 12px;
+  font-size: 0.9rem;
+}
+
+.bot {
+  background-color: #3498db;
+  color: white;
+  align-self: flex-start;
+  border-bottom-left-radius: 4px;
+}
+
+.user {
+  background-color: #2c3e50;
+  color: white;
+  align-self: flex-end;
+  border-bottom-right-radius: 4px;
+}
+
+.chatbot-input {
+  padding: 1rem;
+  border-top: 1px solid #ecf0f1;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.chatbot-input input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  outline: none;
+  font-size: 0.9rem;
+}
+
+.chatbot-input button {
+  background-color: #2c3e50;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.chatbot-input button:hover {
+  background-color: #2980b9;
+}
+.social-links {
+  display: flex;
+  gap: 20px;
+}
+
+.icon-tooltip {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.icon-tooltip .tooltip-text {
+  visibility: hidden;
+  width: max-content;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  position: absolute;
+  bottom: 130%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  white-space: nowrap;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  font-size: 0.75rem;
+  z-index: 1;
+}
+
+.icon-tooltip:hover .tooltip-text {
+  visibility: visible;
+  opacity: 1;
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.icon-tooltip i {
+  font-size: 1.5rem;
+  color: #444;
+  transition: color 0.3s ease;
+}
+
+.icon-tooltip i:hover {
+  color: #3498db; /* Customize icon hover color */
+}
+
+
+    </style>
+</head>
+<body>
+    <!-- Butterfly Animation Container -->
+    <div class="butterfly-container">
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <!-- Butterfly body -->
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <!-- Left wings -->
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Right wings -->
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Wing patterns -->
+                    <circle cx="-10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="-8" cy="5" r="2" fill="#DA70D6"/>
+                    <circle cx="8" cy="5" r="2" fill="#DA70D6"/>
+                    <!-- Antennae -->
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="-8" cy="5" r="2" fill="#B0C4DE"/>
+                    <circle cx="8" cy="5" r="2" fill="#B0C4DE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#F0E68C"/>
+                    <circle cx="8" cy="5" r="2" fill="#F0E68C"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="-8" cy="5" r="2" fill="#AFEEEE"/>
+                    <circle cx="8" cy="5" r="2" fill="#AFEEEE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#98FB98"/>
+                    <circle cx="8" cy="5" r="2" fill="#98FB98"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="-8" cy="5" r="2" fill="#FFB6C1"/>
+                    <circle cx="8" cy="5" r="2" fill="#FFB6C1"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    <header>
+        <nav class="navbar">
+            <a href="#" class="logo">Made by Mikayla<span>.</span></a>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="#skills">Skills</a>
+                <a href="contact.html">Contact</a>
+                <a href="aboutme.html">About Me</a>
+                <a href="certificates.html">Certificates</a>
+            </div>
+            <div class="mobile-menu">
+         <i class="fas fa-bars"></i>
+            </div>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Hi! I'm Mikayla Ungwyn</h1>
+            <h2>Software Developer | AI Engineer</h2>
+            <p>I'm a recent Software Development graduate passionate about building efficient, user-friendly applications and eager to grow in a collaborative tech environment.</p>
+            <div class="hero-btns">
+                <a href="viewmywork.html" class="btn btn-primary">View My Work</a>
+                <a href="contact.html" class="btn btn-outline">Contact Me</a>
+            </div>
+            <div class="social-links">
+    <div class="icon-tooltip">
+        <a href="https://www.linkedin.com/in/mikayla-ungwyn-458652311/" aria-label="LinkedIn">
+            <i class="fab fa-linkedin-in"></i>
+        </a>
+        <span class="tooltip-text">LinkedIn</span>
+    </div>
+
+    <div class="icon-tooltip">
+        <a href="https://github.com/KayUngwyn" aria-label="GitHub">
+            <i class="fab fa-github"></i>
+        </a>
+        <span class="tooltip-text">GitHub</span>
+    </div>
+
+    <div class="icon-tooltip">
+        <a href="mailto:ungwynkayla@icloud.com" aria-label="Email">
+            <i class="fas fa-envelope"></i>
+        </a>
+        <span class="tooltip-text">Email</span>
+    </div>
+
+    <div class="icon-tooltip">
+        <a href="resume.pdf.pdf" download aria-label="Download CV">
+            <i class="fas fa-file-download"></i>
+        </a>
+        <span class="tooltip-text">Download CV</span>
+    </div>
+</div>
+
+
+           
+        </div>
+        <div class="hero-image">
+            <img src="Mikayla Ungwyn.jpg" alt="Professional headshot of [Mikayla], a web developer, wearing business casual attire with a clean background">
+        </div>
+    </section>
+
+    <section id="projects" class="section">
+        <div class="section-title">
+            <h2>Notable Projects</h2>
+            <p>A selection of my recent professional work as a  developer.</p>
+        </div>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="How to make a Resume online_ step by step form filling guide_.jpg" alt="Dashboard interface showing analytics charts and KPIs with a dark theme">
+                </div>
+                <div class="project-content">
+                    <h3>Resume Generator</h3>
+                    <p>An interactive web application that allows users to create professional resumes with a template and real-time preview. Built using HTML, CSS, and JavaScript in Visual Studio Code.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">VS Code</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href=" https://kayungwyn.github.io/CVGenerator/" class="live-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/KayUngwyn/CVGenerator/blob/main/index.html" class="code-link">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="Social Media Wallpapers - Top Free Social Media Backgrounds - WallpaperAccess.jpg" alt="E-commerce website product page with grid layout and clean typography">
+                </div>
+                <div class="project-content">
+                    <h3>CoreVolt Caption Generator</h3>
+                    <p>A sophisticated Caption Generator designed to create creative, engaging, and context-aware text suggestions for various types of content. It helps users craft catchy and relevant captions for social media posts, marketing materials, blogs, and more. </p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">VS Code</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href="https://kayungwyn.github.io/CoreVolt/" class="live-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/KayUngwyn/CoreVolt/blob/main/index.html" class="code-link">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-image">
+                    <img src="rs9lakxg.png" alt="Mobile app interface with health tracking features and charts">
+                </div>
+                <div class="project-content">
+                    <h3>Hangman Game</h3>
+                    <p>A classic word-guessing game implemented. The player tries to guess a hidden word by suggesting letters within a limited number of attempts.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <div class="project-actions">
+                        <a href=" https://kayungwyn.github.io/hangmanGame/" class="live-link">
+                            <i class="fas fa-external-link-alt"></i> Live Demo
+                        </a>
+                        <a href="https://github.com/KayUngwyn/hangmanGame" class="code-link">
+                            <i class="fab fa-github"></i> View Code
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="section-title">
+            <h2>Professional Skill Set</h2>
+            <p>A collection of tools and technologies that power my development process.</p>
+        </div>
+        <div class="skills-container">
+            <div class="skill-category">
+                <h3>Frontend</h3>
+                <ul class="skill-list">
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-react"></i></div>
+                        <span>React.js</span>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-vuejs"></i></div>
+                        <span>Vue.js</span>
+                    </li>
+                    <li class="skill-item">
+                        <div class="skill-icon"><i class="fab fa-js"></i></div>
+                        <span>JavaScript</span>
+                    </li>
+                   
+                </ul>
+            </div>
+            <div class="skill-category">
+    <h3>Backend</h3>
+    <ul class="skill-list">
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fab fa-java"></i></div>
+            <span>Java</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fab fa-python"></i></div>
+            <span>Python</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fas fa-code"></i></div>
+            <span>C#</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fas fa-database"></i></div>
+            <span>SQL</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fas fa-database"></i></div>
+            <span>NoSQL</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fab fa-react"></i></div>
+            <span>React</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fas fa-code"></i></div>
+            <span>JSON</span>
+        </li>
+    </ul>
+</div>
+
+<div class="skill-category">
+    <h3>Tools</h3>
+    <ul class="skill-list">
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fab fa-linux"></i></div>
+            <span>Linux</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fab fa-git-alt"></i></div>
+            <span>Git</span>
+        </li>
+        <li class="skill-item">
+            <div class="skill-icon"><i class="fab fa-figma"></i></div>
+            <span>Figma</span>
+        </li>
+    
+    </ul>
+</div>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h3>Portfolio</h3>
+                <p>A developer portfolio demonstrating my capabilities through hands-on web projects and experience.</p>
+            </div>
+            <div class="footer-column">
+                <h3>Get In Touch</h3>
+                <div class="contact-info">
+                    <p><i class="fas fa-envelope"></i> ungwynkayla@icloud.com</p>
+                    <p><i class="fas fa-phone-alt"></i> 061 990 2217</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Cape Town, Western Cape</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Mikayla Ungwyn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Enhanced butterfly animation on page load
+        window.addEventListener('load', function() {
+            const butterflies = document.querySelectorAll('.butterfly');
+            
+            // Add random starting positions and delays
+            butterflies.forEach((butterfly, index) => {
+                const randomDelay = Math.random() * 5;
+                const randomStart = Math.random() * window.innerHeight;
+                
+                butterfly.style.animationDelay = `-${randomDelay}s`;
+                butterfly.style.top = `${randomStart}px`;
+                
+                // Add different flight patterns
+                const patterns = [
+                    'fly-wave', 'fly-spiral', 'fly-zigzag', 'fly-circle'
+                ];
+                
+                // Create dynamic keyframes for more varied movement
+                if (index % 2 === 0) {
+                    butterfly.style.animationTimingFunction = 'ease-in-out';
+                } else {
+                    butterfly.style.animationTimingFunction = 'linear';
+                }
+            });
+        });
+
+        // Add interactive butterfly effect on hover
+        document.addEventListener('mousemove', function(e) {
+            const butterflies = document.querySelectorAll('.butterfly');
+            
+            butterflies.forEach((butterfly, index) => {
+                if (Math.random() > 0.98) { // Occasional response to mouse movement
+                    const rect = butterfly.getBoundingClientRect();
+                    const distance = Math.sqrt(
+                        Math.pow(e.clientX - (rect.left + rect.width/2), 2) + 
+                        Math.pow(e.clientY - (rect.top + rect.height/2), 2)
+                    );
+                    
+                    if (distance < 200) {
+                        butterfly.style.transform += ` scale(1.1)`;
+                        setTimeout(() => {
+                            butterfly.style.transform = butterfly.style.transform.replace(' scale(1.1)', '');
+                        }, 300);
+                    }
+                }
+            });
+        });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+    const chatbotIcon = document.getElementById('chatbotIcon');
+    const chatbotContainer = document.getElementById('chatbotContainer');
+    const chatbotClose = document.getElementById('chatbotClose');
+    const chatbotMessages = document.getElementById('chatbotMessages');
+    const chatbotInput = document.getElementById('chatbotInput');
+    const chatbotSend = document.getElementById('chatbotSend');
+
+    const mikaylaInfo = {
+  name: "Mikayla Ungwyn",
+  age: "22",
+  role: "Software Developer",
+  education: "Higher Certificate in Information Systems (Software Development)",
+  skills: ["Java", "C#", "Python", "SQL", "Linux", "HTML", "JavaScript"],
+  interests: ["web development", "machine learning", "software development", "hiking", "reading tech blogs"],
+  currentProject: "Mikayla is currently developing an intelligent chatbot that showcases her personal profile.",
+  email: "ungwynkayla@icloud.com",
+  github: "github.com/KayUngwyn",
+  phone: "0619902217",
+
+  linkedin: "www.linkedin.com/in/mikayla-ungwyn-458652311",
+  languages: ["Afrikaans (native)", "English (conversational)", "Python", "Java", "C#", "SQL"],
+  location: "Cape Town",
+    residence: "Cape Town, South Africa",
+
+  experience: [
+    "Currently working at CapaCiTi, focusing on Artificial Intelligence and hands-on software development training.",
+    "Gaining practical skills in AI projects, teamwork, and technical problem solving."
+  ],
+  achievements: [
+    "Building a strong foundation in web development and AI fundamentals.",
+    "Demonstrating consistent growth in coding and real-world application design.",
+    "Creating applications with user authentication and clean UI.",
+    "Successfully debugged and optimized code in collaborative environments.",
+    "Actively learning new technologies through structured training and projects."
+  ],
+  futureGoals: "Improve problem solving skills, specialize in AI development, and contribute to impactful tech solutions.",
+  fiveYearPlan: "Becoming a Specialist or Tech Lead in AI or software development, working on innovative products.",
+  favorites: {
+    food: "pasta🍝",
+    color: "🔵blue"
+  },
+  passions: ["continuous learning", "developing meaningful technology", "empowering communities through code"]
+};
+
+
+    chatbotIcon.addEventListener('click', function () {
+      chatbotContainer.classList.add('active');
+    });
+
+    chatbotClose.addEventListener('click', function () {
+      chatbotContainer.classList.remove('active');
+    });
+
+    function sendMessage() {
+      const message = chatbotInput.value.trim();
+      if (message) {
+        addMessage('user', message);
+        setTimeout(() => {
+          const response = generateResponse(message);
+          addMessage('bot', response);
+        }, 500);
+        chatbotInput.value = '';
+      }
+    }
+
+    chatbotSend.addEventListener('click', sendMessage);
+    chatbotInput.addEventListener('keypress', function (e) {
+      if (e.key === 'Enter') sendMessage();
+    });
+
+    function addMessage(type, text) {
+      const msg = document.createElement('div');
+      msg.classList.add('message', type);
+      msg.textContent = text;
+      chatbotMessages.appendChild(msg);
+      chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
+    }
+
+    function generateResponse(message) {
+      message = message.toLowerCase();
+      if (message.includes('name')) return `Her name is ${mikaylaInfo.name}.`;
+      if (message.includes('who') && message.includes('you')) return "I'm Mikayla's chatbot assistant...";
+      if (message.includes('who') && message.includes('mikayla')) return `${mikaylaInfo.name} is a ${mikaylaInfo.role}...`;
+      if (message.includes('education')) return `Mikayla has a ${mikaylaInfo.education}.`;
+      if (message.includes('skills')) return `Her skills include: ${mikaylaInfo.skills.join(', ')}.`;
+
+      if (message.includes('email')) return `You can contact Mikayla at ${mikaylaInfo.email}.`;
+      if (message.includes('phone') || message.includes('number')) return `Her phone number is ${mikaylaInfo.contactDetails.phone}.`;
+      if (message.includes('github')) return `GitHub: ${mikaylaInfo.github}`;
+      if (message.includes('linkedin')) return `LinkedIn profile: ${mikaylaInfo.contactDetails.linkedin}`;
+
+
+      if (message.includes('project')) return `${mikaylaInfo.currentProject}`;
+      if (message.includes('location')) return `She's based in ${mikaylaInfo.location}.`;
+      if (message.includes('residence')) return `Her residence is ${mikaylaInfo.residence}.`;
+      if (message.includes('achievement')) return `Achievements: ${mikaylaInfo.achievements.join(', ')}`;
+      if (message.includes('language')) return `Languages: ${mikaylaInfo.languages.join(', ')}`;
+      if (message.includes('interest')) return `She's interested in ${mikaylaInfo.interests.join(', ')}`;
+      if (message.includes('age')) return `Mikayla is ${mikaylaInfo.age} years old.`;
+      if (message.includes('goal')) return mikaylaInfo.futureGoals;
+      if (message.includes('five year')) return mikaylaInfo.fiveYearPlan;
+      if (message.includes('experience')) return `Experience: ${mikaylaInfo.experience.join(' ')}`;
+      if (message.includes('color')) return mikaylaInfo.favorites.color;
+      if (message.includes('food')) return mikaylaInfo.favorites.food;
+      if (message.includes('passion')) return mikaylaInfo.passions.join(', ');
+      if (message.includes('hi') || message.includes('hello')) return "Hello! How can I help you?";
+      if (message.includes('thank')) return "You're welcome!";
+      if (message.includes('bye')) return "Goodbye!";
+      return "I'm here to help with anything related to Mikayla's career!";
+    }
+  });
+    </script>
+    <!-- Chatbot Icon (Floating Button) -->
+<div class="chatbot-icon-wrapper">
+  <div class="chatbot-icon" id="chatbotIcon">
+    <img src="download__2_-removebg-preview.png" alt="Chatbot Icon" />
+  </div>
+</div>
+
+<!-- Chatbot Window -->
+<div class="chatbot-container" id="chatbotContainer">
+  <div class="chatbot-header">
+    <div class="chatbot-title">Have Questions About Mikayla?</div>
+    <button class="chatbot-close" id="chatbotClose">×</button>
+  </div>
+  <div class="chatbot-messages" id="chatbotMessages">
+    <div class="message bot">Welcome! I'm here to assist you with anything related to Mikayla’s portfolio, experience, or background. How can I help?</div>
+  </div>
+  <div class="chatbot-input">
+    <input type="text" id="chatbotInput" placeholder="Type your message..." />
+    <button id="chatbotSend">
+      <!-- Send icon SVG -->
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="22" y1="2" x2="11" y2="13"></line>
+        <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+      </svg>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>

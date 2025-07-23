@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Certificates</title>
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2c3e50;
+            --light-color: #ecf0f1;
+            --accent-color: #e74c3c;
+            --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--secondary-color);
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        header {
+            background-image: url("pexels-codioful-7135019.jpg");
+            color: white;
+            text-align: center;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            box-shadow: var(--box-shadow);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .cert-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 2rem 0;
+        }
+
+       
+
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .cert-card {
+    position: relative; /* needed for z-index */
+    z-index: 1;
+    transition: transform 0.3s ease;
+}
+
+.cert-card:hover {
+    z-index: 10; /* bring hovered card on top */
+}
+
+.cert-image {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-bottom: 1px solid #eee;
+    transition: transform 0.4s ease;
+}
+
+.cert-card:hover .cert-image {
+    transform: scale(1.7); /* zoom 70% bigger */
+    cursor: zoom-in;
+    z-index: 20;
+}
+
+
+       
+
+
+
+        .cert-info {
+            padding: 1.5rem;
+        }
+
+        .cert-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .cert-issuer {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cert-date {
+            color: #7f8c8d;
+            font-size: 0.9rem;
+        }
+
+        .search-container {
+            margin: 2rem auto;
+            max-width: 600px;
+        }
+
+        .search-bar {
+            width: 100%;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 25px;
+            box-shadow: var(--box-shadow);
+            font-size: 1rem;
+            transition: box-shadow 0.3s ease, transform 0.3s ease;
+        }
+
+        .search-bar:focus {
+            outline: none;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transform: scale(1.02); /* Scale effect on focus */
+        }
+
+        .filter-controls {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 8px 16px;
+            background: white;
+            border: none;
+            border-radius: 20px;
+            box-shadow: var(--box-shadow);
+            cursor: pointer;
+            transition: all 0.3s ease, transform 0.3s ease; /* Added transform transition */
+        }
+
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary-color);
+            color: white;
+            transform: scale(1.05); /* Scale effect on hover */
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 3rem;
+            background: var(--secondary-color);
+            color: white;
+        }
+
+        @media (max-width: 768px) {
+            .cert-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-controls {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        .home-link {
+    position: absolute;
+    top: 20px;
+    right: 20px; 
+    background:transparent;
+    color: white;
+    padding: 10px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    transition: background 0.3s, transform 0.3s;
+}
+
+.home-link:hover {
+    background: var(--primary-color);
+    color: white;
+    transform: scale(1.05);
+}
+
+    </style>
+</head>
+<body>
+    
+    <header>
+        <a href="index.html" class="home-link">Home</a>
+
+        <div class="container">
+            <h1>My Certificates</h1>
+            <p class="subtitle">Professional achievements and qualifications</p>
+
+            
+        </div>
+    </header>
+
+    <main class="container">
+        <div class="search-container">
+            <input type="text" class="search-bar" placeholder="Search certificates..." id="searchInput">
+        </div>
+
+        <div class="filter-controls">
+            <button class="filter-btn active" data-filter="all">All</button>
+            <button class="filter-btn" data-filter="technical">Technical</button>
+            <button class="filter-btn" data-filter="professional">Professional</button>
+            <button class="filter-btn" data-filter="academic">Academic</button>
+        </div>
+
+        <div class="cert-grid" id="certificateContainer">
+            <!-- Certificate entries will be added dynamically -->
+            <div class="cert-card" data-category="technical">
+                <img src="ai.png" alt="JavaScript Certification - Full Stack Developer Program from Tech University" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Artificial Intelligence on Microsoft Azure</h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued: 03 July 2025</p>
+                </div>
+            </div>
+
+            <div class="cert-card" data-category="professional">
+                <img src="bias.png" alt="Project Management Professional (PMP) Certification from PMI" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Trustworthy AI</h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued: 03 July 2025</p>
+                </div>
+            </div>
+
+            <div class="cert-card" data-category="academic">
+                <img src="llm.png" alt="Advanced Data Science Certification from Data Science Academy" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Generative AI with Large Language Models</h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued: 02 June 2025</p>
+                </div>
+            </div>
+
+            <div class="cert-card" data-category="technical">
+                <img src="mlwithpython.png" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Machine Learning with Python</h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued: 18 July 2025</p>
+                </div>
+            </div>
+
+            <div class="cert-card" data-category="technical">
+                <img src="python for data.png" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Python for Data Science, AI & Development </h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued:27 May 2025</p>
+                </div>
+            </div>
+
+            <div class="cert-card" data-category="professional">
+                <img src="softwareengnerring.png" alt="Leadership Excellence Certification from Business Leaders Forum" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Software Engineering</h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued: 17 July 2025</p>
+                </div>
+            </div>
+
+            <div class="cert-grid" id="certificateContainer">
+            <div class="cert-card" data-category="technical">
+                <img src="tensflow.png" alt="JavaScript Certification - Full Stack Developer Program from Tech University" class="cert-image">
+                <div class="cert-info">
+                    <h3 class="cert-title">Deep Learning wit Keras and TensorFlow</h3>
+                    <p class="cert-issuer">Coursera</p>
+                    <p class="cert-date">Issued: 22 July 2025</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Search functionality
+            const searchInput = document.getElementById('searchInput');
+            const certificates = document.querySelectorAll('.cert-card');
+            
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                certificates.forEach(cert => {
+                    const text = cert.textContent.toLowerCase();
+                    if (text.includes(searchTerm)) {
+                        cert.style.display = '';
+                    } else {
+                        cert.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Filter functionality
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    // Update active button
+                    filterBtns.forEach(b => b.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    const filter = this.dataset.filter;
+                    
+                    certificates.forEach(cert => {
+                        if (filter === 'all') {
+                            cert.style.display = '';
+                        } else {
+                            if (cert.dataset.category === filter) {
+                                cert.style.display = '';
+                            } else {
+                                cert.style.display = 'none';
+                            }
+                        }
+                    });
+                });
+            });
+            
+           
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me & Timeline</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --bg-color: white;
+            --primary-color: #8742e1;
+            --accent-color: white;
+            --text-color: grey;
+            --light-text: #576574;
+        }
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-image: url('pexels-codioful-7135019.jpg');
+            color: var(--text-color);
+            line-height: 1.6;
+            padding: 2rem;
+            font-style:italic;
+        }
+        .navbar {
+    max-width: 1200px;
+    margin: 0 auto 2rem;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: transparent;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary);
+    transition: var(--transition);
+    text-decoration: none;
+}
+
+.logo:hover {
+    color: var(--accent);
+}
+
+.logo span {
+    color: var(--accent);
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-links a {
+    position: relative;
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--primary);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.nav-links a:hover {
+    color: var(--accent);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent);
+    transition: var(--transition);
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.mobile-menu {
+    display: none;
+    cursor: pointer;
+}
+:root {
+    --bg-color: white;
+    --primary-color: #8742e1;
+    --accent-color: #eee;
+    --text-color: grey;
+    --light-text: #576574;
+    
+    --primary: white;
+    --accent: #8742e1;
+    --transition: all 0.3s ease;
+}
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease-in;
+        }
+        h1, h2 {
+            text-align: center;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        p.intro {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--light-text);
+            font-size: 1.1rem;
+        }
+        .timeline {
+            position: relative;
+            padding-left: 2rem;
+            margin: 2rem 0;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 20px;
+            width: 4px;
+            height: 100%;
+            background: var(--accent-color);
+            border-radius: 2px;
+        }
+        .event {
+            position: relative;
+            margin-bottom: 2rem;
+            padding-left: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s forwards;
+        }
+        .event:nth-child(even) {
+            animation-delay: 0.2s;
+        }
+        .event:nth-child(odd) {
+            animation-delay: 0.4s;
+        }
+        .event::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            background: var(--primary-color);
+            border: 4px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 0 3px var(--accent-color);
+        }
+        .event .date {
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 0.25rem;
+        }
+        .event .title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: #222f3e;
+        }
+        .event .description {
+            color: var(--light-text);
+        }
+        .soft-skills, .hard-skills {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 2px solid var(--accent-color);
+        }
+        .skill {
+            background: #eee;
+            border-radius: 10px;
+            padding: 1.2rem;
+            text-align: center;
+            box-shadow: 0 6px 12px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        .skill:hover {
+            transform: translateY(-5px);
+        }
+        .skill i {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        .skill p {
+            margin: 0;
+            color: var(--text-color);
+            font-weight: 500;
+        }
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.98);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+        @media (max-width: 600px) {
+            body {
+                padding: 1rem;
+            }
+            .container {
+                padding: 1rem;
+            }
+        }
+        .butterfly-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 999;
+        overflow: hidden;
+    }
+
+    .butterfly {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        opacity: 0.8;
+        animation: fly 15s infinite linear;
+    }
+
+    .butterfly.large {
+        width: 80px;
+        height: 80px;
+    }
+
+    .butterfly.small {
+        width: 40px;
+        height: 40px;
+    }
+
+    .butterfly svg {
+        width: 100%;
+        height: 100%;
+        filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        animation: flutter 0.5s infinite alternate ease-in-out;
+    }
+
+    @keyframes fly {
+        0% {
+            transform: translateX(-100px) translateY(50vh) rotate(0deg);
+        }
+        25% {
+            transform: translateX(25vw) translateY(20vh) rotate(90deg);
+        }
+        50% {
+            transform: translateX(50vw) translateY(70vh) rotate(180deg);
+        }
+        75% {
+            transform: translateX(75vw) translateY(30vh) rotate(270deg);
+        }
+        100% {
+            transform: translateX(calc(100vw + 100px)) translateY(50vh) rotate(360deg);
+        }
+    }
+
+    @keyframes flutter {
+        0%, 100% { transform: scaleX(1); }
+        50% { transform: scaleX(0.8); }
+    }
+
+    .butterfly:nth-child(2) {
+        animation-delay: -3s;
+        animation-duration: 18s;
+    }
+
+    .butterfly:nth-child(3) {
+        animation-delay: -6s;
+        animation-duration: 20s;
+    }
+
+    .butterfly:nth-child(4) {
+        animation-delay: -9s;
+        animation-duration: 16s;
+    }
+
+    .butterfly:nth-child(5) {
+        animation-delay: -12s;
+        animation-duration: 22s;
+    }
+
+    .butterfly:nth-child(6) {
+        animation-delay: -15s;
+        animation-duration: 14s;
+    }
+
+    @media (max-width: 768px) {
+        .butterfly {
+            width: 40px;
+            height: 40px;
+        }
+
+        .butterfly.large {
+            width: 55px;
+            height: 55px;
+        }
+
+        .butterfly.small {
+            width: 30px;
+            height: 30px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+    <a href="#" class="logo"><span></span></a>
+    <div class="nav-links">
+        <a href="index.html">Home</a>
+       
+    </div>
+    <div class="mobile-menu">
+        <i class="fas fa-bars"></i>
+    </div>
+</nav>
+
+    <div class="container">
+        <h1>About Me</h1>
+        
+        <p class="intro">Hi! I'm Mikayla, a passionate developer and lifelong learner. Here's a brief timeline of my journey so far.</p>
+
+        <div class="timeline">
+            <div class="event">
+                <div class="date">2021</div>
+                <div class="title">Started My Journey</div>
+                <div class="description">Having matriculated, I soon realized my genuine passion lies in technology.</div>
+            </div>
+            <div class="event">
+                <div class="date">2022</div>
+                <div class="title">Built My First Website</div>
+                <div class="description">Created a personal blog using HTML, CSS, and JavaScript.</div>
+            </div>
+            <div class="event">
+                <div class="date">2022</div>
+                <div class="title">Studied at Eduvos</div>
+                <div class="description">I was enrolled in a Higher Certificate in Software Development program in 2022, focusing on programming, software design, and application development.</div>
+            </div>
+            <div class="event">
+                <div class="date">2024</div>
+                <div class="title">Graduated</div>
+                <div class="description">I graduated with a Higher Certificate in Software Development, gaining practical skills and knowledge in programming, software design, and application development.</div>
+            </div>
+            <div class="event">
+                <div class="date">2025-Present</div>
+                <div class="title">AI Engineer | Capaciti </div>
+                <div class="description">Currently studying at Capaciti, where I am gaining hands-on experience with cutting-edge AI technologies, contributing to projects, and developing practical skills to build innovative community tools.</div>
+            </div>
+           
+        </div>
+
+        <h2>Soft Skills</h2>
+        <div class="soft-skills">
+            <div class="skill">
+                <i class="fas fa-users"></i>
+                <p>Teamwork</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-comments"></i>
+                <p>Communication</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-lightbulb"></i>
+                <p>Problem-Solving</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-clock"></i>
+                <p>Time Management</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-brain"></i>
+                <p>Critical Thinking</p>
+            </div>
+        </div>
+
+        <h2>Tech Skills</h2>
+        <div class="hard-skills">
+            <div class="skill">
+                <i class="fab fa-java"></i>
+                <p>Java</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-code"></i>
+                <p>C#</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-terminal"></i>
+                <p>Linux</p>
+            </div>
+            <div class="skill">
+                <i class="fas fa-database"></i>
+                <p>SQL</p>
+            </div>
+            <div class="skill">
+                <i class="fab fa-html5"></i>
+                <p>HTML5</p>
+            </div>
+            <div class="skill">
+                <i class="fab fa-css3-alt"></i>
+                <p>CSS3</p>
+            </div>
+            <div class="skill">
+                <i class="fab fa-js"></i>
+                <p>JavaScript</p>
+            </div>
+            <div class="skill">
+                <i class="fab fa-python"></i>
+                <p>Python</p>
+            </div>
+        </div>
+        <div class="butterfly-container">
+           <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <!-- Butterfly body -->
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <!-- Left wings -->
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Right wings -->
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Wing patterns -->
+                    <circle cx="-10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="-8" cy="5" r="2" fill="#DA70D6"/>
+                    <circle cx="8" cy="5" r="2" fill="#DA70D6"/>
+                    <!-- Antennae -->
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="-8" cy="5" r="2" fill="#B0C4DE"/>
+                    <circle cx="8" cy="5" r="2" fill="#B0C4DE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#F0E68C"/>
+                    <circle cx="8" cy="5" r="2" fill="#F0E68C"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="-8" cy="5" r="2" fill="#AFEEEE"/>
+                    <circle cx="8" cy="5" r="2" fill="#AFEEEE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#98FB98"/>
+                    <circle cx="8" cy="5" r="2" fill="#98FB98"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="-8" cy="5" r="2" fill="#FFB6C1"/>
+                    <circle cx="8" cy="5" r="2" fill="#FFB6C1"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        </div>
+    </div>
+</body>
+</html>

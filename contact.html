@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Skills Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+
+      body{
+        font-style: italic;
+      }
+
+
+        :root {
+            --primary: white;
+            --secondary: #10b981;
+            --accent: #8b5cf6;
+        }
+
+    
+
+        .animate-progress {
+            animation: slideIn 1s ease-out forwards;
+        }
+
+        @keyframes slideIn {
+            from {
+                width: 0;
+            }
+            to {
+                width: var(--progress-width);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+          .butterfly {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .butterfly.large {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .butterfly.small {
+                width: 30px;
+                height: 30px;
+            }
+
+        @media (max-width: 768px) {
+            .project-card {
+                width: 100%;
+            }
+        
+        }
+        /* Butterfly Animation Styles */
+.butterfly-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.butterfly {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+    animation: fly 15s infinite linear;
+}
+
+.butterfly.large {
+    width: 80px;
+    height: 80px;
+}
+
+.butterfly.small {
+    width: 40px;
+    height: 40px;
+}
+
+.butterfly svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    animation: flutter 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateX(-100px) translateY(50vh) rotate(0deg);
+    }
+    25% {
+        transform: translateX(25vw) translateY(20vh) rotate(90deg);
+    }
+    50% {
+        transform: translateX(50vw) translateY(70vh) rotate(180deg);
+    }
+    75% {
+        transform: translateX(75vw) translateY(30vh) rotate(270deg);
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(50vh) rotate(360deg);
+    }
+}
+
+@keyframes flutter {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(0.8); }
+}
+
+/* Different flight paths */
+.butterfly:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 18s;
+}
+
+.butterfly:nth-child(3) {
+    animation-delay: -6s;
+    animation-duration: 20s;
+}
+
+.butterfly:nth-child(4) {
+    animation-delay: -9s;
+    animation-duration: 16s;
+}
+
+.butterfly:nth-child(5) {
+    animation-delay: -12s;
+    animation-duration: 22s;
+}
+
+.butterfly:nth-child(6) {
+    animation-delay: -15s;
+    animation-duration: 14s;
+}
+
+/* Responsive: Reduce butterfly size on mobile */
+@media (max-width: 768px) {
+    .butterfly {
+        width: 40px;
+        height: 40px;
+    }
+
+    .butterfly.large {
+        width: 55px;
+        height: 55px;
+    }
+
+    .butterfly.small {
+        width: 30px;
+        height: 30px;
+    }
+}
+    </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased">
+    <!-- Navigation -->
+<nav class="bg-white shadow-sm px-6 py-4 flex justify-between items-center sticky top-0 z-50">
+    <div class="text-xl font-bold text-gray-800"></div>
+    <div class="flex items-center space-x-6">
+        <a href="index.html" class="text-gray-600 hover:text-blue-500">Home</a>
+    </div>
+</nav>
+
+
+    <!-- Hero Section -->
+    <section class="py-16 px-6 bg-gray-100 text-gray-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-4xl md:text-5xl font-bold mb-6 animate-fade-in" style="animation: fadeInUp 1s ease-out;">Let's Work Together</h1>
+            <p class="text-xl md:text-2xl mb-8 opacity-90">Get in touch for project inquiries, collaborations, or just to say hello</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="py-16 px-6 max-w-3xl mx-auto">
+  <div class="bg-white rounded-xl shadow-md overflow-hidden p-8">
+    <form id="contact-form" action="https://formspree.io/f/xvgqkgqq" method="POST" class="space-y-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Name:</label>
+          <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+        </div>
+        <div>
+          <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email:</label>
+          <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+        </div>
+      </div>
+      <div>
+        <label for="subject" class="block text-sm font-medium text-gray-700 mb-1">Subject:</label>
+        <input type="text" id="subject" name="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Message:</label>
+        <textarea id="message" name="message" rows="5" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"></textarea>
+      </div>
+      <button type="submit" class="w-full bg-blue-500 hover:bg-blue-600 text-white font-medium py-3 px-6 rounded-lg transition duration-300">Send Message</button>
+      <p id="success-message" class="hidden text-green-600 font-medium mt-4">Thanks! Your message has been sent.</p>
+    </form>
+  </div>
+</main>
+
+
+            <div class="mt-12 pt-12 border-t border-gray-200">
+                <h3 class="text-xl font-semibold mb-4">Other Ways to Reach Me</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="flex items-center">
+                        <div class="bg-blue-100 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linecap="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Email</h4>
+                            <p class="text-gray-600">ungwynkayla@icloud.com</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-green-100 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Phone</h4>
+                            <p class="text-gray-600">061 990 2217</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center">
+                        <div class="bg-purple-100 p-3 rounded-full mr-4">
+                            <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="font-medium">Location</h4>
+                            <p class="text-gray-600">Cape Town, Western Cape</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+   </span>
+     <!-- Butterfly Animation Container -->
+    <div class="butterfly-container">
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <!-- Butterfly body -->
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <!-- Left wings -->
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Right wings -->
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Wing patterns -->
+                    <circle cx="-10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="-8" cy="5" r="2" fill="#DA70D6"/>
+                    <circle cx="8" cy="5" r="2" fill="#DA70D6"/>
+                    <!-- Antennae -->
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="-8" cy="5" r="2" fill="#B0C4DE"/>
+                    <circle cx="8" cy="5" r="2" fill="#B0C4DE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#F0E68C"/>
+                    <circle cx="8" cy="5" r="2" fill="#F0E68C"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="-8" cy="5" r="2" fill="#AFEEEE"/>
+                    <circle cx="8" cy="5" r="2" fill="#AFEEEE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#98FB98"/>
+                    <circle cx="8" cy="5" r="2" fill="#98FB98"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="-8" cy="5" r="2" fill="#FFB6C1"/>
+                    <circle cx="8" cy="5" r="2" fill="#FFB6C1"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+    </div>                   
+    <script>
+       const form = document.getElementById('contact-form');
+  const successMessage = document.getElementById('success-message');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(form);
+
+    try {
+      const response = await fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+      });
+
+      if (response.ok) {
+        successMessage.classList.remove('hidden');
+        form.reset();
+      } else {
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      alert("Error submitting form. Please check your connection.");
+    }
+  });
+    </script>
+</body>
+</html>
+
+
+

@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects | Tech Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        :root {
+            --primary: #4299e1;
+            --primary-dark: #4299e1;
+            --dark: #1f2937;
+            --light: #f5f3ff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f5f3ff;
+            color: var(--dark);
+            font-style: italic;
+            background-color: white;
+        }
+
+        .project-card {
+            transition: all 0.6s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 4px 6px -1px rgba(250, 249, 252, 0.1), 0 2px 4px -1px rgba(109, 40, 217, 0.06);
+            border: 1px solid #4299e1;
+            transform: translateX(50px);
+            opacity: 0;
+        }
+
+        .project-card.slide-in {
+            transform: translateX(0);
+            opacity: 1;
+        }
+
+        .project-card.slide-in:hover {
+            transform: translateY(-5px) translateX(0) !important;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-btn {
+            transition: all 0.2s ease;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .project-image {
+            height: 200px;
+            object-fit: cover;
+            width: 100%;
+        }
+
+        .tech-badge {
+            padding: 0.25rem 0.5rem;
+            background-color: #ede9fe;
+            color: #4299e1;
+            border-radius: 0.25rem;
+            font-size: 0.75rem;
+            border: 1px solid #ddd6fe;
+        }
+
+         /* Reduce butterfly size on mobile */
+            .butterfly {
+                width: 40px;
+                height: 40px;
+            }
+            
+            .butterfly.large {
+                width: 55px;
+                height: 55px;
+            }
+            
+            .butterfly.small {
+                width: 30px;
+                height: 30px;
+            }
+
+        @media (max-width: 768px) {
+            .project-card {
+                width: 100%;
+            }
+        
+        }
+        /* Butterfly Animation Styles */
+.butterfly-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+    overflow: hidden;
+}
+
+.butterfly {
+    position: absolute;
+    width: 60px;
+    height: 60px;
+    opacity: 0.8;
+    animation: fly 15s infinite linear;
+}
+
+.butterfly.large {
+    width: 80px;
+    height: 80px;
+}
+
+.butterfly.small {
+    width: 40px;
+    height: 40px;
+}
+
+.butterfly svg {
+    width: 100%;
+    height: 100%;
+    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+    animation: flutter 0.5s infinite alternate ease-in-out;
+}
+
+@keyframes fly {
+    0% {
+        transform: translateX(-100px) translateY(50vh) rotate(0deg);
+    }
+    25% {
+        transform: translateX(25vw) translateY(20vh) rotate(90deg);
+    }
+    50% {
+        transform: translateX(50vw) translateY(70vh) rotate(180deg);
+    }
+    75% {
+        transform: translateX(75vw) translateY(30vh) rotate(270deg);
+    }
+    100% {
+        transform: translateX(calc(100vw + 100px)) translateY(50vh) rotate(360deg);
+    }
+}
+
+@keyframes flutter {
+    0%, 100% { transform: scaleX(1); }
+    50% { transform: scaleX(0.8); }
+}
+
+/* Different flight paths */
+.butterfly:nth-child(2) {
+    animation-delay: -3s;
+    animation-duration: 18s;
+}
+
+.butterfly:nth-child(3) {
+    animation-delay: -6s;
+    animation-duration: 20s;
+}
+
+.butterfly:nth-child(4) {
+    animation-delay: -9s;
+    animation-duration: 16s;
+}
+
+.butterfly:nth-child(5) {
+    animation-delay: -12s;
+    animation-duration: 22s;
+}
+
+.butterfly:nth-child(6) {
+    animation-delay: -15s;
+    animation-duration: 14s;
+}
+
+/* Responsive: Reduce butterfly size on mobile */
+@media (max-width: 768px) {
+    .butterfly {
+        width: 40px;
+        height: 40px;
+    }
+
+    .butterfly.large {
+        width: 55px;
+        height: 55px;
+    }
+
+    .butterfly.small {
+        width: 30px;
+        height: 30px;
+    }
+}
+
+    </style>
+</head>
+<body class="min-h-screen">
+    <header class="bg-white shadow-sm">
+        <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+            <div class="flex justify-between items-center">
+                <a href="#" class="text-2xl font-bold text-purple-800">
+                    
+                </a>
+                <button class="md:hidden">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+                <div class="hidden md:flex space-x-6">
+                    <a href="index.html" class="hover:text-none-700">Home</a>
+                    
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <section class="mb-12">
+            <h1 class="text-3xl md:text-4xl font-bold text-center mb-6">My Projects</h1>
+            <p class="text-lg text-center text-gray-600 max-w-3xl mx-auto mb-8">
+                From web platforms to mobile apps, each project here tells a story of problem-solving, creativity, and continuous learning in software development.
+
+            <div class="flex flex-wrap justify-center gap-4 mb-10">
+                <button class="filter-btn active px-4 py-2 rounded-md" data-filter="all">All Projects</button>
+                <button class="filter-btn px-4 py-2 rounded-md" data-filter="web">Web Development</button>
+                <button class="filter-btn px-4 py-2 rounded-md" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn px-4 py-2 rounded-md" data-filter="api">API Development</button>
+                <button class="filter-btn px-4 py-2 rounded-md" data-filter="uiux">UI/UX Design</button>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="projects-container">
+                <!-- Project 1 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden" data-category="web">
+                    <img src="From Zero to Hero_ How a VPN Can Transform Your Internet Experience.jpg" alt="Modern e-commerce dashboard interface with analytics charts and product management features" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Fraud Detector</h3>
+                        <p class="text-gray-600 mb-4">
+                            A simple and effective web application that detects fraudulent transactions in a CSV file using a machine learning model. Users can upload a dataset, and the app will process and classify each transaction as Fraud or Not Fraud, displaying the results clearly.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">Visual Studio Code</span>
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">Java</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href=" https://kayungwyn.github.io/fraudDetector/"class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
+                              
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden" data-category="mobile">
+                    <img src="Sentiment analysis on customer feedback, brand reputation or positive review, social voice, rating or opinion report, reaction or survey concept, business people analyze social sentiment dashboard_.jpg" alt="Mobile fitness app interface showing workout progress and exercise tracking" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Sentiment Analysis Dashboard</h3>
+                        <p class="text-gray-600 mb-4">
+A user-friendly web dashboard that performs real-time sentiment analysis. Users can enter any word or short phrase, and the system will analyze its emotional tone — returning a label such as Happy, Sad, or Neutral based on the sentiment behind the input.                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">Visual Studio Code</span>
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">Java</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href=" https://kayungwyn.github.io/SentimentAnalysisDashboard/"class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden" data-category="api">
+                    <img src="Cooking Website - Cooking website with custom domain - Custom design website.jpg" alt="Code editor screen showing REST API documentation with example requests and responses" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Basic cooking Website Interface</h3>
+                        <p class="text-gray-600 mb-4">
+A visually appealing, responsive cooking website interface designed to showcase recipes, ingredients, and cooking categories. While the site is currently non-functional, it serves as a complete UI/UX prototype for a future food blog or recipe platform.
+
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">Visual Studio Code</span>
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://kayungwyn.github.io/cooking/" class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden" data-category="uiux">
+                    <img src="3d rendering of calculator and math symbol on background 3d render illustration cartoon style _ Premium AI-generated image.jpg" alt="Modern banking app interface showing transaction history and financial dashboard" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Calculator</h3>
+                        <p class="text-gray-600 mb-4">
+                         This is a simple and responsive calculator web application developed using HTML, CSS, and JavaScript. It performs basic arithmetic operations such as addition, subtraction, multiplication, and division. The design is clean and user-friendly, with interactive buttons and a display screen that updates in real-time as users input calculations.
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">Visual Studio</span>
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">Java</span>
+                        </div>
+                        <div class="flex space-x-3">
+                         <a href=" https://kayungwyn.github.io/calculTOR/"class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden" data-category="web">
+                    <img src="Download Quiz Time Neon Signs Style Text Vector for free.jpg" alt="Dark mode developer portfolio website with interactive elements and code snippets" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Quiz</h3>
+                        <p class="text-gray-600 mb-4">
+                       Put your knowledge to the test! This quiz features 20 multiple-choice questions covering a mix of topics. Whether you're here to learn something new or just have fun, each question will challenge your thinking and keep you engaged. Ready to see how many you can get right? Let’s get started!
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">Java</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">Visual Studio Code</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href=" https://kayungwyn.github.io/quiz/"class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6 -->
+                <div class="project-card bg-white rounded-lg overflow-hidden" data-category="mobile">
+                    <img src="Natural Minimalist Aesthetic Color Gradient.jpg" alt="Social media app interface showing user profiles and connection network" class="project-image">
+                    <div class="p-6">
+                        <h3 class="text-xl font-bold mb-2">Color Palette Generator</h3>
+                        <p class="text-gray-600 mb-4">
+                            Effortlessly create stunning color combinations with our Color Palette Generator. Whether you're designing a website, working on branding, or just looking for inspiration, this tool helps you generate harmonious color palettes in seconds. Choose from presets, explore random palettes, or build your own from scratch — perfect for designers, artists, and creators of all kinds.
+
+
+                        </p>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="tech-badge">HTML</span>
+                            <span class="tech-badge">CSS</span>
+                            <span class="tech-badge">JavaScript</span>
+                        </div>
+                        <div class="flex space-x-3">
+                            <a href="https://kayungwyn.github.io/colorpalette/"class="text-blue-600 hover:text-blue-800 font-medium">Live Demo</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Butterfly Animation Container -->
+    <div class="butterfly-container">
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <!-- Butterfly body -->
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <!-- Left wings -->
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Right wings -->
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF69B4" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FF1493" opacity="0.8"/>
+                    <!-- Wing patterns -->
+                    <circle cx="-10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFB6C1"/>
+                    <circle cx="-8" cy="5" r="2" fill="#DA70D6"/>
+                    <circle cx="8" cy="5" r="2" fill="#DA70D6"/>
+                    <!-- Antennae -->
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#9370DB" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#4169E1" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E6E6FA"/>
+                    <circle cx="-8" cy="5" r="2" fill="#B0C4DE"/>
+                    <circle cx="8" cy="5" r="2" fill="#B0C4DE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FFD700" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#FFA500" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFFFE0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#F0E68C"/>
+                    <circle cx="8" cy="5" r="2" fill="#F0E68C"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly large">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#00CED1" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#20B2AA" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="10" cy="-5" r="3" fill="#E0FFFF"/>
+                    <circle cx="-8" cy="5" r="2" fill="#AFEEEE"/>
+                    <circle cx="8" cy="5" r="2" fill="#AFEEEE"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#32CD32" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#228B22" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="10" cy="-5" r="3" fill="#F0FFF0"/>
+                    <circle cx="-8" cy="5" r="2" fill="#98FB98"/>
+                    <circle cx="8" cy="5" r="2" fill="#98FB98"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+        
+        <div class="butterfly small">
+            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <g transform="translate(50,50)">
+                    <ellipse cx="0" cy="0" rx="2" ry="25" fill="#8B4513"/>
+                    <ellipse cx="-15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="-12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <ellipse cx="15" cy="-10" rx="12" ry="15" fill="#FF6347" opacity="0.8"/>
+                    <ellipse cx="12" cy="8" rx="8" ry="12" fill="#DC143C" opacity="0.8"/>
+                    <circle cx="-10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="10" cy="-5" r="3" fill="#FFF5EE"/>
+                    <circle cx="-8" cy="5" r="2" fill="#FFB6C1"/>
+                    <circle cx="8" cy="5" r="2" fill="#FFB6C1"/>
+                    <line x1="-2" y1="-20" x2="-5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <line x1="2" y1="-20" x2="5" y2="-28" stroke="#8B4513" stroke-width="1"/>
+                    <circle cx="-5" cy="-28" r="1" fill="#8B4513"/>
+                    <circle cx="5" cy="-28" r="1" fill="#8B4513"/>
+                </g>
+            </svg>
+        </div>
+    </div>
+
+    </main>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+
+            filterButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    button.classList.add('active');
+                    
+                    const filterValue = button.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                            card.style.display = 'block';
+                        } else {
+                            card.style.display = 'none';
+                        }
+                    });
+                });
+            });
+
+            // Adding staggered slide animation on scroll
+            const observerOptions = {
+                threshold: 0.1
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.classList.add('slide-in');
+                        }, index * 150); // Staggered delay
+                    }
+                });
+            }, observerOptions);
+
+            projectCards.forEach(card => {
+                observer.observe(card);
+            });
+        });
+    </script>
+</body>
+</html>
